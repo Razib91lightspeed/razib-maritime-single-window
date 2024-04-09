@@ -1,5 +1,5 @@
 # Maritime Single Window
-This is small projects containing simple code at this moments
+This is small projects containing simple code at this moment
 that only prints "There are 42 portcalls"
 
 ## Environment Setup
