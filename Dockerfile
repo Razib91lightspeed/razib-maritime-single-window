@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir flask
+# Install Flask and Gunicorn
+RUN pip install --no-cache-dir flask gunicorn
 
 # Make port 80 available to the world outside this container
 EXPOSE 80
@@ -16,5 +16,5 @@ EXPOSE 80
 # Define environment variable
 ENV NAME World
 
-# Run portcall.py when the container launches
-CMD ["python", "portcall.py"]
+# Run the application using Gunicorn
+CMD ["gunicorn", "-w 4", "-b", "0.0.0.0:80", "portcall:app"]
