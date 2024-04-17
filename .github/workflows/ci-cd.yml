@@ -36,8 +36,8 @@ jobs:
       - name: Deploy to EC2 instance
         run: |
           ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/id_rsa ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} '
-            docker stop myapp || true
-            docker rm myapp || true
-            docker pull ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
-            docker run -d --restart unless-stopped --name myapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
+            sudo docker stop myapp || true
+            sudo docker rm myapp || true
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
+            sudo docker run -d --restart unless-stopped --name myapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
           '
